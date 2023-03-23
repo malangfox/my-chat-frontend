@@ -1,0 +1,171 @@
+<div class="main">
+  <div class="background">
+    <div class="image"
+      style="background-image: url(https://www.bing.com/cdx/bg-sprite.png); background-position: 0% 0%; opacity: 1">
+    </div>
+  </div>
+  <div class="conversation">
+    <div class="scroller scroller-enabled">
+      <div class="scroller-positioner">
+        <div class="top content">
+          <div class="main" id="cib-chat-main">
+            <div class="chat-turn" *ngFor="let chat of chatService.chat">
+              <div class="user">
+                <div class="message">
+                  <div class="content text-message-content">
+                    {{ chat.me }}
+                  </div>
+                </div>
+              </div>
+              <div class="response">
+                <div class="message-main meta" *ngFor="let meta of chat.think">
+                  <div class="content">
+                    <div class="meta-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
+                        <path d="M256 1088q0-26 19-45t45-19q26 0 45 19l403 402 915-914q19-19 45-19t45 19 19 45q0 26-19 45l-960 960q-19 19-45 19t-45-19l-448-448q-19-19-19-45z"></path>
+                      </svg>
+                    </div>
+                    <div class="meta-text" [innerHTML]="meta">
+                    </div>
+                  </div>
+                </div>
+                <div class="message-main" *ngIf="chat.you">
+                  <div class="shared">
+                    <div class="content text-message-content">
+                      {{ chat.you }}
+                    </div>
+                  </div>
+                  <div class="content footer">
+                    <div class="attribution">
+                      <div class="root" role="list" aria-label="자세한 정보:">
+                        <div class="learn-more">자세한 정보:</div>
+                        <div class="attribution-container">
+                          <div class="attribution-items">
+                            <a class="attribution-item" target="_blank" role="listitem" h="ID=SERP,5027.1"
+                              href="https://bing.com/search?q=%eb%b9%85%eb%a7%a5+%ea%b0%80%ea%b2%a9"
+                              title="맥도날드 빅맥 가격 칼로리 정보와 빅맥지수" tabindex="0">1. bing.com</a>
+                            <a class="attribution-item" target="_blank" role="listitem" h="ID=SERP,5027.1"
+                              href="https://namu.wiki/w/%EB%B9%85%EB%A7%A5" title="빅맥 - 나무위키" tabindex="0">2.
+                              namu.wiki</a>
+                            <a class="attribution-item" target="_blank" role="listitem" h="ID=SERP,5027.1"
+                              href="https://dltjstod.tistory.com/entry/2022-%EB%B9%85%EB%A7%A5%EC%A7%80%EC%88%98-%EA%B5%AD%EA%B0%80%EB%B3%84-%EC%88%9C%EC%9C%84-%EC%99%84%EB%B2%BD-%EC%A0%95%EB%A6%AC"
+                              title="2022 빅맥지수 국가별 순위 완벽 정리" tabindex="0">3. dltjstod.tistory.com</a>
+                            <a class="attribution-item" target="_blank" role="listitem" h="ID=SERP,5027.1"
+                              href="https://hse30.tistory.com/434" title="맥도날드 메뉴·가격표·리뷰 정리" tabindex="0">4.
+                              hse30.tistory.com</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="turn-counter">
+                      <div class="text">
+                        <span>{{ chat.num }}</span>
+                        <span> / </span>
+                        <span>15</span>
+                      </div>
+                      <div class="indicator"></div>
+                    </div>
+                  </div>
+                  <div class="feedback"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="action" style="--button-compose-collapsed-width:48px; --button-compose-expanded-width:120px;">
+    <div class="root">
+      <div class="outside-left-container">
+        <div class="button-compose-wrapper">
+          <button class="button-compose" type="button" aria-label="새 토픽">
+            <div class="button-compose-content">
+              <div class="button-compose-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M20.7024 2.07782C20.3937 1.9095 20.0071 2.02326 19.8387 2.33191L14.7415 11.679C14.1315 11.2867 12.5639 10.42 11.3923 11.0061C10.3929 11.5061 10.1645 11.9182 9.7972 12.5811L9.75982 12.6485L17.4519 16.3461C17.8157 15.5976 18.0392 14.7269 17.7579 13.977C17.4612 13.1858 16.5737 12.5962 15.8846 12.2419L20.9565 2.94145C21.1248 2.6328 21.011 2.24614 20.7024 2.07782ZM9.05827 13.7646L9.08017 13.7343L16.7805 17.4359C16.6758 17.5743 16.5752 17.6958 16.4848 17.7962L12.9912 21.8721C12.7862 22.1113 12.4811 22.2405 12.1701 22.1901C11.4069 22.0663 9.9278 21.7116 8.93156 20.7456C8.80688 20.6246 8.85936 20.4169 9.00607 20.324C9.86774 19.7781 10.625 18.4374 10.625 18.4374C10.625 18.4374 9.05827 19.4999 7.0625 19.4374C5.52782 19.3893 3.64397 17.9429 2.85543 17.2771C2.6979 17.144 2.76842 16.8923 2.96968 16.8476C4.24898 16.5636 7.68904 15.6473 9.05827 13.7646Z">
+                  </path>
+                  <path
+                    d="M8.60974 9.02978C8.52129 8.8234 8.22871 8.82341 8.14026 9.02978L7.77833 9.87431C7.70052 10.0559 7.55586 10.2005 7.37431 10.2783L6.52978 10.6403C6.3234 10.7287 6.32341 11.0213 6.52978 11.1097L7.37431 11.4717C7.55586 11.5495 7.70052 11.6941 7.77833 11.8757L8.14026 12.7202C8.22871 12.9266 8.52129 12.9266 8.60974 12.7202L8.97167 11.8757C9.04948 11.6941 9.19414 11.5495 9.37569 11.4717L10.2202 11.1097C10.4266 11.0213 10.4266 10.7287 10.2202 10.6403L9.37569 10.2783C9.19414 10.2005 9.04948 10.0559 8.97167 9.87431L8.60974 9.02978Z">
+                  </path>
+                  <path
+                    d="M14.0511 5.99109C13.9847 5.8363 13.7653 5.8363 13.6989 5.99109L13.4275 6.62448C13.3691 6.76064 13.2606 6.86914 13.1245 6.92749L12.4911 7.19895C12.3363 7.26528 12.3363 7.48472 12.4911 7.55105L13.1245 7.82251C13.2606 7.88086 13.3691 7.98936 13.4275 8.12552L13.6989 8.75891C13.7653 8.9137 13.9847 8.9137 14.0511 8.75891L14.3225 8.12552C14.3809 7.98936 14.4894 7.88086 14.6255 7.82251L15.2589 7.55105C15.4137 7.48472 15.4137 7.26528 15.2589 7.19895L14.6255 6.92749C14.4894 6.86914 14.3809 6.76064 14.3225 6.62448L14.0511 5.99109Z">
+                  </path>
+                </svg>
+              </div>
+              <div class="button-compose-text">새 토픽</div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="main-container">
+        <div class="speech-output" aria-live="off">
+        </div>
+        <div class="input-container">
+          <form id="searchboxform" autocomplete="off">
+            <label class="text-input" data-input="" data-suggestion="">
+              <div class="autosuggest" hidden="">
+                <span class="autosuggest-text prepend"></span>
+                <span class="autosuggest-text append"></span>
+                <span class="autosuggest-button">탭</span>
+              </div>
+              <textarea (keydown.enter)="send()" [(ngModel)]="text" class="text-area" id="searchbox" name="searchbox"
+                type="text" rows="1" enterkeyhint="send" maxlength="2000" dir="" autofocus="" autocapitalize="off"
+                autocomplete="off" aria-autocomplete="both" spellcheck="false" aria-label="Bing에 물어보기" autocorrect="off"
+                placeholder="무엇이든 물어보세요"></textarea>
+            </label>
+          </form>
+          <div class="controls-left">
+            <div class="control chat">
+              <div class="control-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
+                  <path
+                    d="M0 1984q0-26 8-54t15-53q23-95 48-188t48-188q-59-110-89-230T0 1026q0-141 36-272t103-246 160-207 208-161T752 37t272-37q141 0 271 36t245 104 207 160 161 207 103 244 37 272q0 140-36 270t-103 245-159 208-206 161-244 104-271 37q-124 0-244-28t-230-86L79 2046q-10 2-15 2-27 0-45-18t-19-46zm1020-64q124 0 239-32t215-90 182-139 141-182 91-215 32-239q0-124-32-238t-90-214-141-181-182-140-214-90-238-32q-123 0-237 32t-214 90-181 139-140 181-91 213-32 238q0 65 8 120t23 107 36 105 48 109q8 16 8 31 0 11-6 41t-16 69-21 84-23 86-20 74-13 50q68-16 134-32t135-33q34-8 71-19t72-11q8 0 15 2t15 6q54 25 104 45t102 35 105 22 115 8zM704 896q-26 0-45-19t-19-45q0-26 19-45t45-19h640q26 0 45 19t19 45q0 26-19 45t-45 19H704zm0 384q-26 0-45-19t-19-45q0-26 19-45t45-19h384q26 0 45 19t19 45q0 26-19 45t-45 19H704z">
+                  </path>
+                </svg>
+              </div>
+            </div>
+            <div class="control keyboard">
+              <button class="button" type="button" aria-label="텍스트 입력 모드" disabled="">
+              </button>
+            </div>
+          </div>
+          <div class="controls-right">
+            <div class="control submit">
+              <button class="button primary" type="button" aria-label="제출">
+                <div class="submit-icon">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M20.7024 2.07782C20.3937 1.9095 20.0071 2.02326 19.8387 2.33191L14.7415 11.679C14.1315 11.2867 12.5639 10.42 11.3923 11.0061C10.3929 11.5061 10.1645 11.9182 9.7972 12.5811L9.75982 12.6485L17.4519 16.3461C17.8157 15.5976 18.0392 14.7269 17.7579 13.977C17.4612 13.1858 16.5737 12.5962 15.8846 12.2419L20.9565 2.94145C21.1248 2.6328 21.011 2.24614 20.7024 2.07782ZM9.05827 13.7646L9.08017 13.7343L16.7805 17.4359C16.6758 17.5743 16.5752 17.6958 16.4848 17.7962L12.9912 21.8721C12.7862 22.1113 12.4811 22.2405 12.1701 22.1901C11.4069 22.0663 9.9278 21.7116 8.93156 20.7456C8.80688 20.6246 8.85936 20.4169 9.00607 20.324C9.86774 19.7781 10.625 18.4374 10.625 18.4374C10.625 18.4374 9.05827 19.4999 7.0625 19.4374C5.52782 19.3893 3.64397 17.9429 2.85543 17.2771C2.6979 17.144 2.76842 16.8923 2.96968 16.8476C4.24898 16.5636 7.68904 15.6473 9.05827 13.7646Z">
+                    </path>
+                    <path
+                      d="M8.60974 9.02978C8.52129 8.8234 8.22871 8.82341 8.14026 9.02978L7.77833 9.87431C7.70052 10.0559 7.55586 10.2005 7.37431 10.2783L6.52978 10.6403C6.3234 10.7287 6.32341 11.0213 6.52978 11.1097L7.37431 11.4717C7.55586 11.5495 7.70052 11.6941 7.77833 11.8757L8.14026 12.7202C8.22871 12.9266 8.52129 12.9266 8.60974 12.7202L8.97167 11.8757C9.04948 11.6941 9.19414 11.5495 9.37569 11.4717L10.2202 11.1097C10.4266 11.0213 10.4266 10.7287 10.2202 10.6403L9.37569 10.2783C9.19414 10.2005 9.04948 10.0559 8.97167 9.87431L8.60974 9.02978Z">
+                    </path>
+                    <path
+                      d="M14.0511 5.99109C13.9847 5.8363 13.7653 5.8363 13.6989 5.99109L13.4275 6.62448C13.3691 6.76064 13.2606 6.86914 13.1245 6.92749L12.4911 7.19895C12.3363 7.26528 12.3363 7.48472 12.4911 7.55105L13.1245 7.82251C13.2606 7.88086 13.3691 7.98936 13.4275 8.12552L13.6989 8.75891C13.7653 8.9137 13.9847 8.9137 14.0511 8.75891L14.3225 8.12552C14.3809 7.98936 14.4894 7.88086 14.6255 7.82251L15.2589 7.55105C15.4137 7.48472 15.4137 7.26528 15.2589 7.19895L14.6255 6.92749C14.4894 6.86914 14.3809 6.76064 14.3225 6.62448L14.0511 5.99109Z">
+                    </path>
+                  </svg>
+                </div>
+              </button>
+            </div>
+          </div>
+          <div class="bottom-bar">
+            <div class="letter-counter"><span>0</span>/2000</div>
+            <div class="bottom-bar-controls">
+              <button class="button" type="button" aria-live="polite" aria-label="편집 모드" aria-expanded="false">
+                <div class="bottom-icon">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M16.2425 2.93189L21.0682 7.75765C22.3955 9.08491 22.0324 11.3224 20.3535 12.1619L15.4826 14.5973C15.3073 14.685 15.1732 14.8379 15.1092 15.0232L13.6699 19.1895C13.3684 20.0622 12.2574 20.3181 11.6045 19.6653L8.50002 16.5607L4.06074 21.0001H3L3.00008 19.9394L7.43936 15.5001L4.33487 12.3956C3.682 11.7427 3.93791 10.6317 4.81061 10.3302L8.97688 8.89096C9.16223 8.82694 9.31512 8.69287 9.40281 8.51748L11.8382 3.6466C12.6777 1.96772 14.9152 1.60462 16.2425 2.93189ZM20.0076 8.81831L15.1818 3.99255C14.5785 3.38924 13.5614 3.55429 13.1799 4.31742L10.7445 9.18829C10.4814 9.71446 10.0227 10.1167 9.46666 10.3087L5.67812 11.6175L12.3826 18.322L13.6914 14.5335C13.8835 13.9774 14.2857 13.5188 14.8118 13.2557L19.6827 10.8202C20.4458 10.4387 20.6109 9.42161 20.0076 8.81831Z">
+                    </path>
+                  </svg>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

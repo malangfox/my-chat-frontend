@@ -485,7 +485,7 @@ form {
 .attribution {
   display: flex;
   flex-direction: row;
-  align-items: start;
+  align-items: flex-start;
   flex-grow: 1;
   min-height: 24px;
   max-height: 24px;

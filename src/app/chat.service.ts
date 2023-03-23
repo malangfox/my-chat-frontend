@@ -43,14 +43,12 @@ export class ChatService {
 
   onMessage(event: any) {
     const data = JSON.parse(event.data.split('')[0]);
-    console.log(data);
     if (data.arguments) {
       if (data.arguments[0].throttling?.numUserMessagesInConversation) {
         this.chat[this.index].num =
           data.arguments[0].throttling.numUserMessagesInConversation;
       }
       if (data.arguments[0].messages) {
-        console.log(data.arguments[0].messages);
         const response = data.arguments[0].messages[0];
         if (response.messageType === 'InternalSearchQuery') {
           this.chat[this.index].think.push(
@@ -65,14 +63,11 @@ export class ChatService {
       }
     }
     if (data.type === 2) {
-      console.log(data);
       if (data.result) {
         this.chat[this.index].think.push(`횟수가 초과되었습니다.`);
       }
       if (data.item && data.item.messages) {
-        console.log(data.item.messages);
         const message = data.item.messages.find(message => message.adaptiveCards);
-        console.log(message);
       }
       this.pending = false;
       ++this.index;

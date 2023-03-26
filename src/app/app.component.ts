@@ -13,20 +13,15 @@ export class AppComponent implements OnInit {
 
   constructor(
     public chatService: ChatService,
-    private route: ActivatedRoute,
   ) { }
 
   async ngOnInit() {
-    this.route.queryParams
-      .pipe(take(2))
-      .subscribe(async (params) => {
-        if (params['prodId']) {
-          this.chatService.prodId = params['prodId'];
-        }
-        if (params['conversationSignature']) {
-          this.chatService.conversationSignature = params['conversationSignature'];
-        }
-      });
+    const conversation = await this.chatService.createConversation();
+    console.log(conversation);
+    this.chatService.conversationId = conversation.conversationId
+    this.chatService.clientId = conversation.clientId
+    this.chatService.conversationSignature = conversation.conversationSignature
+    this.chatService.pending = false;
   }
 
   send() {

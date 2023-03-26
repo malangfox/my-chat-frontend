@@ -33,14 +33,17 @@ export class ChatService {
       learnMore: [],
     });
     const ws = new WebSocket('wss://sydney.bing.com/sydney/ChatHub');
+    const traceId = `6420396d6e764c2b8f0aed5ec67ef934`;
     ws.onopen = () => {
       ws.send('{"protocol":"json","version":1}');
+    };
+    ws.onmessage = () => {
       ws.send('{"type":6}');
       ws.send(
-        `{"arguments":[{"source":"cib","optionsSets":["nlu_direct_response_filter","deepleo","disable_emoji_spoken_text","responsible_ai_policy_235","enablemm","galileo","newspoleansgnd","h3toppfp2","wlthrottle","serploc","cachewriteext","e2ecachewrite","dv3sugg"],"allowedMessageTypes":["Chat","InternalSearchQuery","InternalSearchResult","Disengaged","InternalLoaderMessage","RenderCardRequest","AdsQuery","SemanticSerp","GenerateContentQuery","SearchQuery"],"sliceIds":["anidtestcf","norbingchrome","styleqnatg","sydpayajaxlog","toneexp","321toppfp2","314sdprc","314sdprc","0310wlthrot","320newspole","321bic62s0","saharasscf","321sloc","316e2ecache"],"verbosity":"verbose","traceId":"641c024c84bb4fb695e44648aa51f069","isStartOfSession":${this.index === 0},"message":{"locale":"ko-KR","market":"ko-KR","region":"KR","location":"lat:47.639557;long:-122.128159;re=1000m;","locationHints":[{"country":"Korea (South)","state":"Seoul","city":"Seoul","zipcode":"047","timezoneoffset":9,"countryConfidence":8,"cityConfidence":8,"Center":{"Latitude":37.5683,"Longitude":126.9978},"RegionType":2,"SourceType":1}],"timestamp":"2023-03-23T16:39:58+09:00","author":"user","inputMethod":"Keyboard","text":"${text}","messageType":"Chat"},"conversationSignature":"${this.conversationSignature}","participant":{"id":"${this.clientId}"},"conversationId":"${this.conversationId}"}],"invocationId":"${this.index}","target":"chat","type":4}`
+        `{"arguments":[{"source":"cib","optionsSets":["nlu_direct_response_filter","deepleo","disable_emoji_spoken_text","responsible_ai_policy_235","enablemm","galileo","newspoleansgnd","h3toppfp2","wlthrottle","serploc","cachewriteext","e2ecachewrite","dv3sugg"],"allowedMessageTypes":["Chat","InternalSearchQuery","InternalSearchResult","Disengaged","InternalLoaderMessage","RenderCardRequest","AdsQuery","SemanticSerp","GenerateContentQuery","SearchQuery"],"sliceIds":["anidtestcf","norbingchrome","styleqnatg","sydpayajaxlog","toneexp","321toppfp2","314sdprc","314sdprc","0310wlthrot","320newspole","321bic62s0","saharasscf","321sloc","316e2ecache"],"verbosity":"verbose","traceId":"${traceId}","isStartOfSession":${this.index === 0},"message":{"locale":"ko-KR","market":"ko-KR","region":"KR","location":"lat:47.639557;long:-122.128159;re=1000m;","locationHints":[{"country":"Korea (South)","state":"Seoul","city":"Seoul","zipcode":"047","timezoneoffset":9,"countryConfidence":8,"cityConfidence":8,"Center":{"Latitude":37.5683,"Longitude":126.9978},"RegionType":2,"SourceType":1}],"timestamp":"2023-03-23T16:39:58+09:00","author":"user","inputMethod":"Keyboard","text":"${text}","messageType":"Chat"},"conversationSignature":"${this.conversationSignature}","participant":{"id":"${this.clientId}"},"conversationId":"${this.conversationId}"}],"invocationId":"${this.index}","target":"chat","type":4}`
       );
+      ws.onmessage = (event) => this.onMessage(event);
     };
-    ws.onmessage = (event) => this.onMessage(event);
   }
 
   onMessage(event: any) {

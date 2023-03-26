@@ -27,7 +27,9 @@ export class AppComponent implements OnInit {
   send() {
     if (!this.chatService.pending) {
       this.chatService.send(this.text);
-      this.text = "";
+      setTimeout(() => {
+        this.text = "";
+      }, 100);
     }
   }
 }
